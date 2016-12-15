@@ -1,9 +1,13 @@
-﻿using Prism.Unity;
+﻿using BlueMonkey.ExpenceServices;
+using BlueMonkey.ExpenceServices.Local;
+using BlueMonkey.Model;
+using BlueMonkey.TimeService;
+using Prism.Unity;
 using BlueMonkey.Views;
 using Xamarin.Forms;
 using Microsoft.Practices.Unity;
-using BlueMonkey.Services.Interfaces;
-using BlueMonkey.Services.Local;
+using BlueMonkey.LoginService;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace BlueMonkey
 {
@@ -15,12 +19,18 @@ namespace BlueMonkey
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/MainPage");
+            NavigationService.NavigateAsync("LoginPage");
         }
 
         protected override void RegisterTypes()
         {
-            Container.RegisterType<IExpenseService, LocalExpenseService>(new ContainerControlledLifetimeManager());
+            Container.RegisterInstance<IMobileServiceClient>(new MobileServiceClient(Secrets.ServerUri));
+
+            Container.RegisterType<IExpenseService, ExpenseService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDateTimeService, DateTimeService>(new ContainerControlledLifetimeManager());
+
+            Container.RegisterType<IEditReport, EditReport>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IReferReport, ReferReport>(new ContainerControlledLifetimeManager());
 
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
@@ -30,6 +40,9 @@ namespace BlueMonkey
             Container.RegisterTypeForNavigation<ReportPage>();
             Container.RegisterTypeForNavigation<ReceiptPage>();
             Container.RegisterTypeForNavigation<AddReportPage>();
+            Container.RegisterTypeForNavigation<ReportListPage>();
+            Container.RegisterTypeForNavigation<ExpenseSelectionPage>();
+            Container.RegisterTypeForNavigation<LoginPage>();
         }
     }
 }
