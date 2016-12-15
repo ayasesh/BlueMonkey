@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D96104F1-5356-4CDC-8655-26576AA8322B}</ProjectGuid>
+    <ProjectGuid>{C3976E1F-48ED-44EC-BE8B-B1B6B3825A94}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlueMonkey.Business</RootNamespace>
-    <AssemblyName>BlueMonkey.Business</AssemblyName>
+    <RootNamespace>BlueMonkey.Services.Local</RootNamespace>
+    <AssemblyName>BlueMonkey.Services.Local</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -34,17 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Expense.cs" />
+    <Compile Include="LocalExpenseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Core.6.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\BlueMonkey.Business\BlueMonkey.Business.csproj">
+      <Project>{d96104f1-5356-4cdc-8655-26576aa8322b}</Project>
+      <Name>BlueMonkey.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlueMonkey.Services.Interfaces\BlueMonkey.Services.Interfaces.csproj">
+      <Project>{fde5e109-05c0-4060-8933-daec2bfbd58e}</Project>
+      <Name>BlueMonkey.Services.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

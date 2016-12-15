@@ -10,7 +10,7 @@ using Xamarin.Forms;
 namespace BlueMonkey
 {
 
-    public class EventToCommandBehavior : BehaviorBase<VisualElement>
+    public class EventToCommandBehavior : BehaviorBase<View>
     {
         Delegate eventHandler;
 
@@ -43,13 +43,13 @@ namespace BlueMonkey
             set { SetValue(InputConverterProperty, value); }
         }
 
-        protected override void OnAttachedTo(VisualElement bindable)
+        protected override void OnAttachedTo(View bindable)
         {
             base.OnAttachedTo(bindable);
             RegisterEvent(EventName);
         }
 
-        protected override void OnDetachingFrom(VisualElement bindable)
+        protected override void OnDetachingFrom(View bindable)
         {
             DeregisterEvent(EventName);
             base.OnDetachingFrom(bindable);

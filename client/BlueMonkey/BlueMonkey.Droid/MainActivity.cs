@@ -1,12 +1,14 @@
-﻿
+﻿using System;
+
 using Android.App;
 using Android.Content.PM;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
 using Android.OS;
-using BlueMonkey.LoginService;
-using BlueMonkey.LoginService.Azure.Droid;
-using Microsoft.Practices.Unity;
-using Microsoft.WindowsAzure.MobileServices;
 using Prism.Unity;
+using Microsoft.Practices.Unity;
+using BlueMonkey.Services.Interfaces;
 
 namespace BlueMonkey.Droid
 {
@@ -19,7 +21,7 @@ namespace BlueMonkey.Droid
             ToolbarResource = Resource.Layout.toolbar;
 
             base.OnCreate(bundle);
-            CurrentPlatform.Init();
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }
@@ -29,7 +31,7 @@ namespace BlueMonkey.Droid
     {
         public void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<ILoginService, AzureLoginService>(new ContainerControlledLifetimeManager());
+            
         }
     }
 }
